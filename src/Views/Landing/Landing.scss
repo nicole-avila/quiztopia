@@ -1,0 +1,34 @@
+@import "../../sass/_colors";
+@import "../../sass/_mixins";
+
+.landing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 98vh;
+  flex-direction: column;
+
+  &__hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 90%;
+  }
+  & hr {
+    border: 1px solid $white;
+    border-radius: 8px;
+    width: 90vw;
+  }
+  &__hero-title {
+    text-transform: uppercase;
+    font-weight: 200;
+    font-size: 3rem;
+    margin: auto;
+  }
+}
+
+// @media only screen and (min-width: 0px) and (max-width: 500px) {
+//   .landing__hero-title {
+//     font-size: 3rem;
+//   }
+// }
