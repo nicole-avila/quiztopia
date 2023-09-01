@@ -3,8 +3,11 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  background-image: $base;
+  background-image: url("../../src/assets/hero-img-2.jpg");
+  // background-image: $base;
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   height: 100vh;
 }
 

@@ -51,7 +51,14 @@ export default function Mapbox({ setNewLat, setNewLon }: LocationProps) {
 
   return (
     <div>
-      <div ref={mapContainer} style={{ width: "100%", height: "200px" }} />
+      <div
+        ref={mapContainer}
+        style={{
+          width: "400px",
+          height: "200px",
+          margin: "auto",
+        }}
+      />
       {selectedPosition && ( //om positionen har valts så renderar lat o lon koordinaterna
         <p>
           {" "}
