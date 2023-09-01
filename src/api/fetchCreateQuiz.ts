@@ -1,11 +1,13 @@
 interface CreateQuizResponse {
   success: true;
-  quizId: "string";
-  token?: "string";
+  quizId: string;
+  token?: string;
 }
 
-export async function fetchCreateQuiz(quizName: string, token: string) {
-  sessionStorage.getItem(token);
+export async function fetchCreateQuiz(
+  quizName: string
+): Promise<CreateQuizResponse> {
+  const token = sessionStorage.getItem("token");
   const url = "https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz";
   const settings = {
     method: "POST",
@@ -17,4 +19,6 @@ export async function fetchCreateQuiz(quizName: string, token: string) {
   const response = await fetch(url, settings);
   const data: CreateQuizResponse = await response.json();
   console.log("Skapar quiz", data);
+
+  return data;
 }

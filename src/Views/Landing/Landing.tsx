@@ -7,6 +7,7 @@ export default function Landing() {
   return (
     <div className="landing">
       <Authentication />
+
       <div className="landing__hero-content">
         <hr />
         <h1 className="landing__hero-title">quiztopia</h1>

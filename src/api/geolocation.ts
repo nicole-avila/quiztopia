@@ -1,14 +1,17 @@
-import { useEffect } from "react";
+import { CoordsProps } from "../interfaces";
 type setState<T> = React.Dispatch<React.SetStateAction<T>>;
 
-export function Geolocation(setPosition: setState<GeolocationPosition>) {
-  useEffect(() => {
+export async function geolocation(
+  setPosition: setState<CoordsProps | null>,
+  setCenter: (pos: [number, number]) => void
+) {
+  if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
-      (location: GeolocationPosition) => {
-        setPosition(location);
+      (position: GeolocationPosition) => {
+        const coords: GeolocationCoordinates = position.coords;
+        setPosition({ lat: coords.latitude, lon: coords.longitude });
+        setCenter([coords.longitude, coords.latitude]);
       }
     );
-  }, []);
+  }
 }
-// skapa posistion, setPosition usesatet() men vart vill jag hämta det först ?
-//Vilken comp. ? och NÄR ?
