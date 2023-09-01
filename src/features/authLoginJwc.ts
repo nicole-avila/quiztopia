@@ -24,7 +24,6 @@ export async function authLoginJwc(
   const data: ApiLoginResponse = await response.json();
   console.log("hanterar login", data);
   sessionStorage.setItem("token", JSON.stringify(data.token));
-  console.log(data);
 
   if (data.success) {
     console.log("inloggad");
