@@ -1,0 +1,30 @@
+@import "../../sass/_colors";
+@import "../../sass/_mixins";
+
+.quiz {
+  &__list-container {
+    background: $white;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow: scroll;
+    border: 10px solid $white;
+  }
+  &__user-list {
+    background: transparent;
+    width: 200px;
+    margin: 0.4rem 0.6rem 0.4rem 0;
+    max-width: 200px;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    text-transform: uppercase;
+  }
+
+  &__map-question {
+    background: khaki;
+    max-width: 500px;
+    margin: auto;
+  }
+}

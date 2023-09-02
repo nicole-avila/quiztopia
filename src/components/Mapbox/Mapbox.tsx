@@ -12,7 +12,10 @@ interface LocationProps {
   setNewLon: sSN<number>;
 }
 
-export default function Mapbox({ setNewLat, setNewLon }: LocationProps) {
+export default function Mapbox({
+  setNewLat,
+  setNewLon,
+}: LocationProps): JSX.Element {
   const mapContainer = useRef<HTMLDivElement | null>(null); //skapar en ref för att kunna referera till map(kartan) containern
   const mapRef = useRef<MapGl | null>(null); // för att kunna referera till mapboxGl
   const [selectedPosition, setSelectedPosition] = useState<CoordsProps | null>(
@@ -33,7 +36,7 @@ export default function Mapbox({ setNewLat, setNewLon }: LocationProps) {
       zoom: zoom,
     });
 
-    const handleMapClicked = (e) => {
+    const handleMapClicked = (e: any) => {
       setNewLat(e.lngLat.lat);
       setNewLon(e.lngLat.lng);
     };
@@ -56,7 +59,8 @@ export default function Mapbox({ setNewLat, setNewLon }: LocationProps) {
         style={{
           width: "400px",
           height: "200px",
-          margin: "auto",
+          margin: "1rem auto",
+          borderRadius: "8px",
         }}
       />
       {selectedPosition && ( //om positionen har valts så renderar lat o lon koordinaterna
