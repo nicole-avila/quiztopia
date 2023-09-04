@@ -11,6 +11,6 @@ export interface QuestionData {
 }
 
 export interface QuestionCoords {
-  latitude: string;
   longitude: string;
+  latitude: string;
 }

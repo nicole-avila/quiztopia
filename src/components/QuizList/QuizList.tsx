@@ -1,8 +1,9 @@
 import "./QuizList.scss";
 import { fetchGetAllQuiz } from "../../api/fetchGetAllQuiz";
 import { useEffect, useState } from "react";
-import { QuestionData } from "../../interfaces";
+import { QuestionCoords } from "../../interfaces";
 import { fetchGetUserQuiz } from "../../api/fetchGetUserQuiz";
+import GameMapbox from "../GameMapbox/GameMapbox";
 
 export interface Quiz {
   questions: QuestionData[];
@@ -11,9 +12,17 @@ export interface Quiz {
   username: string;
 }
 
+export interface QuestionData {
+  name: string;
+  question: string;
+  answer: string;
+  location: QuestionCoords;
+}
+
 export default function QuizList() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
+  const [locations, setLocations] = useState<QuestionData[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -29,9 +38,13 @@ export default function QuizList() {
 
   async function handleGetUserQuiz(quiz: Quiz) {
     const { username, quizId, userId } = quiz;
+
     try {
-      await fetchGetUserQuiz(username, quizId, userId);
+      const userData = await fetchGetUserQuiz(username, quizId, userId);
+      const questions = userData.quiz.questions;
       setSelectedQuiz(quiz);
+      setLocations(questions);
+      console.log("userData:", userData);
     } catch (error) {
       console.log("något fel", error);
     }
@@ -65,6 +78,9 @@ export default function QuizList() {
           ))}
         <div className="quiz__mapbox"></div>
       </section>
+      <div>
+        <GameMapbox locations={locations} />
+      </div>
     </div>
   );
 }
