@@ -1,42 +1,60 @@
 import "./QuizList.scss";
 import { fetchGetAllQuiz } from "../../api/fetchGetAllQuiz";
-import Mapbox from "../Mapbox/Mapbox";
 import { useEffect, useState } from "react";
 import { QuestionData } from "../../interfaces";
+import { fetchGetUserQuiz } from "../../api/fetchGetUserQuiz";
+
+// interface QuizDataProps {
+//   quiz: Quiz[];
+// }
 
 export interface Quiz {
-  questions: QuestionData;
-  username: string;
+  questions: QuestionData[];
   quizId: string;
   userId: string;
+  username: string;
 }
 
 export default function QuizList() {
-  const [userQuiz, setUserQuiz] = useState<Quiz[]>([]); //userQuizzes
-  console.log(userQuiz);
+  const [quizzes, setQuizzes] = useState<Quiz[]>([]); //Hämtar alla Quiz
+  //   const [quizInfo, setQuizInfo] = useState<QuizDataProps[]>([]); // hämtar quiz från specifik användare
+  const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
 
   useEffect(() => {
     async function fetchData() {
-      console.log(1);
       try {
         const quizzes: Quiz[] = await fetchGetAllQuiz();
-        console.log(2);
-
-        setUserQuiz(quizzes);
-        console.log(quizzes);
+        setQuizzes(quizzes);
       } catch (error) {
         console.log("Något fel har skett", error);
       }
     }
     fetchData();
-    console.log(4); //Får bara ut en tom array..Fortsätt imorgon
   }, []);
+
+  async function handleGetUserQuiz(quiz: Quiz) {
+    const { username, quizId, userId } = quiz;
+    try {
+      const quizData = await fetchGetUserQuiz(username, quizId, userId);
+      console.log(quizData);
+      //   setQuizInfo(quizData);
+      setSelectedQuiz(quiz);
+    } catch (error) {
+      console.log("något fel", error);
+    }
+  }
 
   return (
     <div className="quiz">
       <section className="quiz__list-container">
-        {userQuiz.map((quiz, index) => (
-          <article key={index} className="quiz__user-list">
+        {quizzes.map((quiz, index) => (
+          <article
+            onClick={() => handleGetUserQuiz(quiz)}
+            key={index}
+            className={`quiz__user-list ${
+              selectedQuiz === quiz ? "selected" : ""
+            }`}
+          >
             <h5>{quiz.username}</h5>
             <p></p>
           </article>
@@ -44,13 +62,16 @@ export default function QuizList() {
       </section>
 
       <section className="quiz__map-container">
-        <p className="quiz__map-question">
-          frågan hamnar här men en massa text.. varför skrev jag inte in lorem P
-          ibörjan så hade jag sluppit skriva texten.
-        </p>
-        <div className="quiz__mapbox">
-          <Mapbox />
-        </div>
+        {selectedQuiz &&
+          selectedQuiz.questions.map((question, index) => (
+            <p key={index} className="quiz__map-question">
+              Fråga: {question.question}
+              <br />
+              Svar: {question.answer}
+            </p>
+          ))}
+
+        <div className="quiz__mapbox"></div>
       </section>
     </div>
   );
