@@ -13,7 +13,7 @@ export default function Landing() {
         <h1 className="landing__hero-title">quiztopia</h1>
         <hr />
       </div>
-      <button onClick={() => navigate("/game")}>Start Quiz</button>
+      <button onClick={() => navigate("/quiz-game")}>Start Quiz</button>
     </div>
   );
 }

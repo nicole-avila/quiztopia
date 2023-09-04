@@ -4,10 +4,6 @@ import { useEffect, useState } from "react";
 import { QuestionData } from "../../interfaces";
 import { fetchGetUserQuiz } from "../../api/fetchGetUserQuiz";
 
-// interface QuizDataProps {
-//   quiz: Quiz[];
-// }
-
 export interface Quiz {
   questions: QuestionData[];
   quizId: string;
@@ -16,8 +12,7 @@ export interface Quiz {
 }
 
 export default function QuizList() {
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]); //Hämtar alla Quiz
-  //   const [quizInfo, setQuizInfo] = useState<QuizDataProps[]>([]); // hämtar quiz från specifik användare
+  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
 
   useEffect(() => {
@@ -35,9 +30,7 @@ export default function QuizList() {
   async function handleGetUserQuiz(quiz: Quiz) {
     const { username, quizId, userId } = quiz;
     try {
-      const quizData = await fetchGetUserQuiz(username, quizId, userId);
-      console.log(quizData);
-      //   setQuizInfo(quizData);
+      await fetchGetUserQuiz(username, quizId, userId);
       setSelectedQuiz(quiz);
     } catch (error) {
       console.log("något fel", error);
@@ -70,7 +63,6 @@ export default function QuizList() {
               Svar: {question.answer}
             </p>
           ))}
-
         <div className="quiz__mapbox"></div>
       </section>
     </div>

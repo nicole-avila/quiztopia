@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Landing from "./Views/Landing/Landing";
 import Profile from "./Views/Profile/Profile";
 import Form from "./Views/Form/Form";
-import Game from "./Views/Game/Game";
+import QuizGame from "./Views/QuizGame/QuizGame";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
     element: <Form />,
   },
   {
-    path: "/game",
-    element: <Game />,
+    path: "/quiz-game",
+    element: <QuizGame />,
   },
 ]);
 function App() {
