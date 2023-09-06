@@ -1,4 +1,4 @@
-import { Quiz } from "../components/QuizList/QuizList";
+import { Quiz } from "../interfaces";
 
 export async function fetchGetAllQuiz(): Promise<Quiz[]> {
   try {
@@ -16,8 +16,3 @@ export async function fetchGetAllQuiz(): Promise<Quiz[]> {
     throw error;
   }
 }
-
-// interface QuizResponse {
-//     success: true;
-//     quizzes: Quiz[]
-// }

@@ -1,0 +1,47 @@
+@import "../../sass/_colors";
+@import "../../sass/_mixins";
+
+.user-quiz {
+  margin: auto;
+  max-width: 500px;
+  padding: 1rem;
+  color: $white;
+  height: 60vh;
+
+  & section {
+    height: 350px;
+    overflow: scroll;
+  }
+  &__title {
+    @include fontTitle;
+    font-size: 3rem;
+    font-weight: 200;
+    line-height: normal;
+  }
+
+  &__quiz-container {
+    width: 200px;
+
+    border-radius: 3px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0 0.5rem;
+    background: #ffffff9f;
+    // border-radius: 1px solid $white;
+    margin: 1rem auto;
+  }
+  &__quiz-container p {
+    @include font;
+    font-size: 11px;
+    color: $night;
+    font-weight: 700;
+  }
+
+  &__delete-btn {
+    width: 15px;
+  }
+}

@@ -1,9 +1,12 @@
+import "./Profile.scss";
 import CreateQuiz from "../../components/CreateQuiz/CreateQuiz";
-import { useNavigate } from "react-router-dom";
+import UserQuizList from "../../components/UserQuizList/UserQuizList";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Profile() {
-  sessionStorage.getItem("token");
+  const { state } = useLocation();
   const navigate = useNavigate();
+  sessionStorage.getItem("token");
 
   function logOut() {
     sessionStorage.removeItem("token");
@@ -12,21 +15,18 @@ export default function Profile() {
 
   return (
     <div className="profile">
-      <h1>Profile</h1>
-      <h3>Hi Nicole</h3>
-      <button onClick={logOut}>log out</button>
+      <div className="profile__header">
+        <button className="profile__header-logout" onClick={logOut}>
+          log out
+        </button>
+        <h1 className="profile__header-title">welcome {state.username}</h1>
+      </div>
       <hr />
-      <section>
+      <div className="profile__container">
         <CreateQuiz />
-      </section>
-      <section>
-        <h2>My Quiz List</h2>
-        <hr />
-        <p>empty</p>
-        <li>en lista</li>
-        <li>en lista</li>
-        <li>en lista</li>
-      </section>
+        <UserQuizList username={state.username} />
+      </div>
+      <hr />
     </div>
   );
 }

@@ -1,0 +1,24 @@
+@import "../../sass/_colors";
+@import "../../sass/_mixins";
+
+.profile {
+  &__header {
+    display: flex;
+    flex-direction: column;
+  }
+  &__header-logout {
+    @include btn;
+    margin-left: auto;
+  }
+  &__header-title {
+    @include font;
+    color: $white;
+    line-height: normal;
+    margin-right: auto;
+    margin-top: 0;
+  }
+
+  &__container {
+    background: $op-night;
+  }
+}

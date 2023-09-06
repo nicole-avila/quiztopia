@@ -1,23 +1,9 @@
 import "./QuizList.scss";
 import { fetchGetAllQuiz } from "../../api/fetchGetAllQuiz";
 import { useEffect, useState } from "react";
-import { QuestionCoords } from "../../interfaces";
+import { Quiz, QuestionData } from "../../interfaces";
 import { fetchGetUserQuiz } from "../../api/fetchGetUserQuiz";
 import GameMapbox from "../GameMapbox/GameMapbox";
-
-export interface Quiz {
-  questions: QuestionData[];
-  quizId: string;
-  userId: string;
-  username: string;
-}
-
-export interface QuestionData {
-  name: string;
-  question: string;
-  answer: string;
-  location: QuestionCoords;
-}
 
 export default function QuizList() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
@@ -28,6 +14,8 @@ export default function QuizList() {
     async function fetchData() {
       try {
         const quizzes: Quiz[] = await fetchGetAllQuiz();
+        console.log(quizzes);
+
         setQuizzes(quizzes);
       } catch (error) {
         console.log("Något fel har skett", error);
@@ -61,7 +49,7 @@ export default function QuizList() {
               selectedQuiz === quiz ? "selected" : ""
             }`}
           >
-            <h5>{quiz.username}</h5>
+            <h5>{quiz.quizId}</h5>
             <p></p>
           </article>
         ))}

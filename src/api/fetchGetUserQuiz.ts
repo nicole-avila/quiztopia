@@ -1,4 +1,4 @@
-import { Quiz } from "../components/QuizList/QuizList";
+import { Quiz } from "../interfaces";
 
 export async function fetchGetUserQuiz(
   username: string,
@@ -6,7 +6,7 @@ export async function fetchGetUserQuiz(
   userId: string
 ): Promise<Quiz> {
   try {
-    const url = `  https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz/${userId}/${quizId}`;
+    const url = `https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz/${userId}/${quizId}`;
     const response = await fetch(url);
 
     if (!response.ok) {

@@ -1,0 +1,26 @@
+@import "../../sass/_colors";
+@import "../../sass/_mixins";
+
+.create-quiz {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &__input {
+    width: 169px;
+    height: 33px;
+    border-radius: 4px;
+    border: none;
+    margin: 0.5rem auto;
+    text-indent: 3px;
+  }
+  &__btn {
+    @include btnBig;
+    height: 35px;
+  }
+}

@@ -12,46 +12,39 @@ export interface GameMapboxProps {
 export default function GameMapbox({ locations }: GameMapboxProps) {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapGlQuiz | null>(null);
-  //   const [lng, setLng] = useState<number>(0);
-  //   const [lat, setLat] = useState<number>(0);
-  //   const [zoom, setZoom] = useState<number>(8);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
     if (!mapContainer.current || !locations) return;
 
     mapRef.current?.remove();
 
-    mapRef.current = new MapGlQuiz({
-      container: mapContainer.current,
-      style: "mapbox://styles/mapbox/streets-v12",
-      center: [11.9545, 57.7006],
-      zoom: 8,
-    });
+    try {
+      mapRef.current = new MapGlQuiz({
+        container: mapContainer.current,
+        style: "mapbox://styles/mapbox/streets-v12",
+        center: [11.9545, 57.7006],
+        zoom: 8,
+      });
 
-    const map: MapGlQuiz = mapRef.current;
-    // map.on("move", () => {
-    //   interface Position {
-    //     lng: number;
-    //     lat: number;
-    //   }
+      const map: MapGlQuiz = mapRef.current;
 
-    //   const position: Position = map.getCenter();
-    //   setLat(Number(position.lat.toFixed(4)));
-    //   setLng(Number(position.lng.toFixed(4)));
-    //   setZoom(map.getZoom());
-    // });
-
-    locations.forEach((location) => {
-      const { longitude, latitude } = location.location;
-      new Marker()
-        .setLngLat([parseFloat(longitude), parseFloat(latitude)])
-        .addTo(map);
-    });
+      locations.forEach((location) => {
+        const { longitude, latitude } = location.location;
+        new Marker()
+          .setLngLat([parseFloat(longitude), parseFloat(latitude)])
+          .addTo(map);
+      });
+    } catch (error) {
+      setErrorMessage("Quizet saknar koordinater");
+    }
   }, [locations]);
   console.log(locations);
 
   return (
     <div>
+      <b style={{ color: "purple", background: "#ffffff" }}></b>
+      <p>{errorMessage}</p>
       <div
         ref={mapContainer}
         style={{
@@ -61,7 +54,6 @@ export default function GameMapbox({ locations }: GameMapboxProps) {
           borderRadius: "8px",
         }}
       />
-      <div></div>
     </div>
   );
 }

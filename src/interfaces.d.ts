@@ -1,6 +1,8 @@
-export interface CoordsProps {
-  lat: number;
-  lon: number;
+export interface Quiz {
+  questions: QuestionData[];
+  quizId: string;
+  userId: string;
+  username: string;
 }
 
 export interface QuestionData {
@@ -13,4 +15,8 @@ export interface QuestionData {
 export interface QuestionCoords {
   longitude: string;
   latitude: string;
+}
+export interface CoordsProps {
+  lat: number;
+  lon: number;
 }

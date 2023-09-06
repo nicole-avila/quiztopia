@@ -1,3 +1,4 @@
+import "./CreateQuiz.scss";
 import { useState } from "react";
 import { fetchCreateQuiz } from "../../api/fetchCreateQuiz";
 import { useNavigate } from "react-router-dom";
@@ -21,14 +22,17 @@ export default function CreateQuiz() {
   }
 
   return (
-    <div className="createQuiz">
+    <div className="create-quiz">
       <input
+        className="create-quiz__input"
         onChange={(e) => setQuizName(e.target.value)}
         type="text"
-        placeholder="quiz name"
+        placeholder="Quiz name here..."
       />
 
-      <button onClick={goToForm}>Create Quiz</button>
+      <button className="create-quiz__btn" onClick={goToForm}>
+        Create Quiz
+      </button>
     </div>
   );
 }
