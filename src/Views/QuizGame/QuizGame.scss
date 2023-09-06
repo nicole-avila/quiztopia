@@ -1,0 +1,9 @@
+@import "../../sass/_colors";
+@import "../../sass/_mixins";
+
+.quiz-game {
+  &__title {
+    @include fontTitle;
+    font-size: 5rem;
+  }
+}
