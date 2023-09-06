@@ -1,0 +1,19 @@
+@import "../../sass/_colors";
+@import "../../sass/_mixins";
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  //   width: 300px;
+  //   height: 200px;
+  //   margin: auto;
+  //   z-index: 2;
+  // }
+  &__login-btn,
+  &__signup-btn {
+    @include btn;
+  }
+}

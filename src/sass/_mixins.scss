@@ -1,3 +1,65 @@
+@import "../sass/_colors";
+
 @mixin font {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $night;
+}
+
+@mixin fontTitle {
+  text-transform: uppercase;
+  font-family: "poppins", sans-serif;
+  font-size: 150px;
+  line-height: 160px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  margin: auto;
+  color: $white;
+  -webkit-text-stroke: 4px #ffffff;
+}
+
+@mixin btn {
+  width: 100px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid #ff7149;
+  background: #ffffff;
+  color: #ff7149;
+  text-transform: uppercase;
+  font-family: "poppins", sans-serif;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+@mixin btnBig {
+  width: 173px;
+  height: 49px;
+  border-radius: 4px;
+  border: 1px solid $white;
+  background: none;
+  color: $white;
+  text-transform: uppercase;
+  font-family: "poppins", sans-serif;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+@mixin btnRound {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $white;
+  background: none;
+  color: $white;
+  text-transform: uppercase;
+  font-family: "poppins", sans-serif;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 200;
 }

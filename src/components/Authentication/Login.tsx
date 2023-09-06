@@ -1,18 +1,14 @@
+import "./Authentication.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { authSignUpJwc } from "../../features/authSignUpJwc";
 import { authLoginJwc } from "../../features/authLoginJwc";
 
-export default function Authentication() {
+export default function Login() {
   const [message, setMessage] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [token, setToken] = useState<string>("");
   const navigate = useNavigate();
-
-  async function handleSignUp() {
-    await authSignUpJwc(username, password, setMessage);
-  }
 
   async function handleLogin() {
     try {
@@ -21,7 +17,7 @@ export default function Authentication() {
 
       if (data && data.success) {
         setMessage("Success Login!");
-        navigate("/profile");
+        navigate("/profile", { state: { username } });
       }
       if (data.token) {
         setToken(data.token);
@@ -36,7 +32,7 @@ export default function Authentication() {
   }
 
   return (
-    <div>
+    <div className="auth">
       <p>{message}</p>
       <input
         type="text"
@@ -52,8 +48,9 @@ export default function Authentication() {
         name="password"
         value={password}
       />
-      <button onClick={handleSignUp}>sign up</button>
-      <button onClick={handleLogin}>login</button>
+      <button className="auth__login-btn" onClick={handleLogin}>
+        login
+      </button>
     </div>
   );
 }
