@@ -14,8 +14,9 @@ export default function SignUp() {
 
   return (
     <div className="auth">
-      <p>{message}</p>
+      <p className="auth__message">{message}</p>
       <input
+        className="auth__input"
         type="text"
         placeholder="username"
         onChange={(e) => setUsername(e.target.value)}
@@ -23,6 +24,7 @@ export default function SignUp() {
         value={username}
       />
       <input
+        className="auth__input"
         type="password"
         placeholder="password"
         onChange={(e) => setPassword(e.target.value)}

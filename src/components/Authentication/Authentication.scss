@@ -6,14 +6,56 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  // position: absolute;
+  background: $op-white;
+  width: 300px;
+  border-radius: 8px;
+  // top: 24%;
+  // left: 85%;
+  // transform: translate(-50%, -50%);
+  padding-bottom: 0.6rem;
 
-  //   width: 300px;
-  //   height: 200px;
-  //   margin: auto;
-  //   z-index: 2;
-  // }
+  &__message {
+    margin: 0;
+    padding: 0.8rem;
+    font-size: 11px;
+    color: $white;
+  }
+  &__input {
+    width: 169px;
+    height: 33px;
+    border-radius: 4px;
+    border: 1px solid $white;
+    background: $op-night;
+    margin-bottom: 0.4rem;
+    text-indent: 3px;
+    color: $white;
+  }
+  &__input::placeholder {
+    color: $white;
+    letter-spacing: 0.8px;
+  }
+
   &__login-btn,
   &__signup-btn {
     @include btn;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 425px) {
+  .auth {
+    // display: flex;
+    // align-self: ;
+    // align-items: center;
+
+    position: absolute;
+    background: $op-night;
+
+    width: 280px;
+    border-radius: 8px;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 1rem;
   }
 }

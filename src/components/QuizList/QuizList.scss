@@ -3,7 +3,7 @@
 
 .quiz {
   &__list-container {
-    background: $white;
+    background: $op-night;
     height: 200px;
     display: flex;
     flex-direction: column;
@@ -17,11 +17,15 @@
     margin: 0.4rem 0.6rem 0.4rem 0;
     max-width: 200px;
     height: 50px;
-    border: 1px solid #000;
+    border: 1px solid $white;
     border-radius: 8px;
-    text-transform: uppercase;
   }
-
+  &__user {
+    color: $white;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
   &__map-question {
     background: $white;
     max-width: 500px;

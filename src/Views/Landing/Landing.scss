@@ -7,27 +7,28 @@
   align-items: center;
   height: 98vh;
   flex-direction: column;
+  // position: relative;
+  // background-color: hotpink;
+  margin: 0 1.5rem;
+
   &__header {
     margin-left: auto;
   }
   &__signup-btn,
   &__login-btn {
-    @include btn;
+    @include btnLanding;
     margin: 0 0.5rem 0 0.5rem;
   }
 
-  // &__auth-content {
-  //   width: 300px;
-  //   height: 200px;
-  //   margin: auto;
-  //   z-index: 2;
-  // }
-
-  &__hero-content {
+  &__hero-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 90%;
+  }
+
+  &__auth-container {
+    margin-left: auto;
   }
   & hr {
     border: 1px solid $white;
@@ -37,11 +38,15 @@
   &__hero-title {
     @include fontTitle;
     margin: auto auto 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   &__quiz-btn {
     @include btnBig;
-    margin: 0 auto auto;
+    margin: auto auto 1rem auto;
   }
 }
 
@@ -51,12 +56,23 @@
   }
 }
 @media only screen and (min-width: 400px) and (max-width: 599px) {
-  .landing__hero-title {
-    font-size: 4.8rem;
+  .landing {
+    &__hero-title {
+      font-size: 4.2rem;
+    }
+    &__header {
+      margin: 0 auto;
+    }
   }
 }
+
 @media only screen and (min-width: 0px) and (max-width: 399px) {
-  .landing__hero-title {
-    font-size: 3.4rem;
+  .landing {
+    &__header {
+      margin: 0 auto;
+    }
+    &__hero-title {
+      font-size: 3rem;
+    }
   }
 }

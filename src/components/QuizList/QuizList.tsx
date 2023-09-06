@@ -43,14 +43,14 @@ export default function QuizList() {
       <section className="quiz__list-container">
         {quizzes.map((quiz, index) => (
           <article
-            onClick={() => handleGetUserQuiz(quiz)}
             key={index}
+            onClick={() => handleGetUserQuiz(quiz)}
             className={`quiz__user-list ${
               selectedQuiz === quiz ? "selected" : ""
             }`}
           >
-            <h5>{quiz.quizId}</h5>
-            <p></p>
+            <b className="quiz__user">{quiz.quizId}</b>
+            <p className="quiz__user">made by, {quiz.username}</p>
           </article>
         ))}
       </section>
@@ -60,8 +60,8 @@ export default function QuizList() {
           selectedQuiz.questions.map((question, index) => (
             <p key={index} className="quiz__map-question">
               Fråga: {question.question}
-              <br />
-              Svar: {question.answer}
+              {/* <br />
+              Svar: {question.answer} */}
             </p>
           ))}
         <div className="quiz__mapbox"></div>

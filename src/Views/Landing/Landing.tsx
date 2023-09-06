@@ -10,56 +10,63 @@ export default function Landing() {
   const [showSignUp, setShowSignUp] = useState<boolean>(false);
   const [showLogin, setShowLogin] = useState<boolean>(false);
 
-  // function showSignUpComponent() {
-  //   setShowSignUp(true);
-  //   setShowLogin(false);
-  // }
+  function toggelSign() {
+    setShowSignUp(!showSignUp);
+    setShowLogin(false);
+  }
 
-  // function showLoginComponent() {
-  //   setShowSignUp(false);
-  //   setShowLogin(true);
-  // }
+  function toggelLogin() {
+    setShowLogin(!showLogin);
+    setShowSignUp(false);
+  }
 
-  function toggleAuthContent() {
-    setShowAuthContent(!showAuthContent);
+  function closeAuthContent() {
+    setShowAuthContent(false);
     setShowSignUp(false);
     setShowLogin(false);
   }
+
   return (
     <div className="landing">
       <div className="landing__header">
-        <div className="landing__trott">
-          <button
-            className="landing__signup-btn"
-            onClick={() => {
-              toggleAuthContent();
-              setShowSignUp(true);
-            }}
-          >
-            sign up
-          </button>
-          <button
-            className="landing__login-btn"
-            onClick={() => {
-              toggleAuthContent();
-              setShowLogin(true);
-            }}
-          >
-            Login
-          </button>
-        </div>
+        <button
+          className="landing__signup-btn"
+          onClick={() => {
+            if (showSignUp) {
+              setShowSignUp(false);
+            } else {
+              toggelSign();
+            }
+          }}
+        >
+          <u>sign up</u>
+        </button>
+        <button
+          className="landing__login-btn"
+          onClick={() => {
+            if (showLogin) {
+              setShowLogin(false);
+            } else {
+              toggelLogin();
+            }
+          }}
+        >
+          <u>login</u>
+        </button>
       </div>
-      <div className="landing__hero-content">
+      <div className="landing__hero-container">
         <hr />
         <div
-          className={`landing__auth-content ${
+          className={`landing__auth-container ${
             showAuthContent ? "visible" : "hidden"
           }`}
         >
           {showSignUp && <SignUp />}
           {showLogin && <Login />}
         </div>
-        <h1 className="landing__hero-title">quiztopia</h1>
+        <h1 className="landing__hero-title" onClick={closeAuthContent}>
+          quiztopia
+        </h1>
         <button
           className="landing__quiz-btn"
           onClick={() => navigate("/quiz-game")}
