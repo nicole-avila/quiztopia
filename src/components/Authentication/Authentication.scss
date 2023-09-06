@@ -28,11 +28,11 @@
     border: 1px solid $white;
     background: $op-night;
     margin-bottom: 0.4rem;
-    text-indent: 3px;
+    text-indent: 4px;
     color: $white;
   }
   &__input::placeholder {
-    color: $white;
+    color: $op-white;
     letter-spacing: 0.8px;
   }
 

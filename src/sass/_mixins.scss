@@ -33,7 +33,7 @@
   font-size: 14px;
   font-weight: 200;
 }
-@mixin btnLanding {
+@mixin btnNoBorder {
   @include btn;
   border: none;
 }

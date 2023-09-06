@@ -2,6 +2,7 @@ import "./Authentication.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authLoginJwc } from "../../features/authLoginJwc";
+import { ApiLoginResponse } from "../../interfaces";
 
 export default function Login() {
   const [message, setMessage] = useState<string>("");
@@ -12,22 +13,26 @@ export default function Login() {
 
   async function handleLogin() {
     try {
-      const data = await authLoginJwc(username, password, setMessage);
-      console.log("data från authLogin", data);
+      const data: ApiLoginResponse | undefined = await authLoginJwc(
+        username,
+        password,
+        setMessage
+      );
+      console.log("Data from authLogin", data);
 
       if (data && data.success) {
         setMessage("Success Login!");
         navigate("/profile", { state: { username } });
+      } else {
+        setUsername("");
+        setPassword("");
       }
-      if (data.token) {
+      if (data?.token) {
         setToken(data.token);
         sessionStorage.setItem("token", data.token);
-        console.log(token);
-      } else {
-        setMessage("Failed login!");
       }
     } catch (error) {
-      console.log("error during login", error);
+      console.error("Error during login", error);
     }
   }
 

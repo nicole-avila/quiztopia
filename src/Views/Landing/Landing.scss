@@ -16,7 +16,7 @@
   }
   &__signup-btn,
   &__login-btn {
-    @include btnLanding;
+    @include btnNoBorder;
     margin: 0 0.5rem 0 0.5rem;
   }
 

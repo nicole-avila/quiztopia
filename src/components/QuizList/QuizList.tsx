@@ -18,7 +18,10 @@ export default function QuizList() {
 
         setQuizzes(quizzes);
       } catch (error) {
-        console.log("Något fel har skett", error);
+        console.log(
+          "An error occurred while retrieving the user's quiz:",
+          error
+        );
       }
     }
     fetchData();
@@ -34,7 +37,7 @@ export default function QuizList() {
       setLocations(questions);
       console.log("userData:", userData);
     } catch (error) {
-      console.log("något fel", error);
+      console.error("något fel", error);
     }
   }
 

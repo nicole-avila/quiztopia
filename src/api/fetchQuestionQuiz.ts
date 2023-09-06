@@ -21,7 +21,7 @@ export async function fetchQuestionQuiz(
 
     const response = await fetch(url, settings);
     const data: QuestionData = await response.json();
-    console.log("LÄGGER TILL QUIZ", data);
+    console.log("Adding quiz:", data);
     return data;
   } catch (error) {
     console.log("Något fel skedde med din QUIZ:", error);

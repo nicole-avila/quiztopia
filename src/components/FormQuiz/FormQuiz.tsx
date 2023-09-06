@@ -1,29 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { QuestionData } from "../../interfaces";
+import { QuestionData, FormQuizProps } from "../../interfaces";
 import { fetchQuestionQuiz } from "../../api/fetchQuestionQuiz";
 import Mapbox from "../Mapbox/Mapbox";
 
-interface Props {
-  quiz: string;
-}
-
-export default function FormQuiz(props: Props) {
+export default function FormQuiz(props: FormQuizProps) {
   const navigate = useNavigate();
   const [newLat, setNewLat] = useState<number>(0);
   const [newLon, setNewLon] = useState<number>(0);
   const lat = newLat.toString();
   const lon = newLon.toString();
-
-  console.log(newLat, newLon);
-
   const [formData, setFormData] = useState<QuestionData>({
     name: props.quiz,
     question: "",
     answer: "",
     location: {
-      latitude: 0,
-      longitude: 0,
+      latitude: lat,
+      longitude: lon,
     },
   });
 
@@ -39,18 +32,25 @@ export default function FormQuiz(props: Props) {
     });
   }, [lat, lon]);
 
-  console.log(props.quiz);
-  console.log(formData.question, formData.location);
-
-  async function handleFormSubmit(e: any) {
+  async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
       const data = await fetchQuestionQuiz(formData);
-      console.log("Din fråga är tilllagd", data);
 
-      // if (data && data.success) navigate("/profile");
+      if (data.success) {
+        setFormData({
+          ...formData,
+          question: "",
+          answer: "",
+          location: {
+            latitude: "",
+            longitude: "",
+          },
+        });
+        console.log(formData);
+      }
     } catch (error) {
-      console.log("Något fel skedde med frågan:", error);
+      console.log("Något fel skedde med din frågan:", error);
     }
   }
 

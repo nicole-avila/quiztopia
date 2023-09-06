@@ -4,9 +4,9 @@ import UserQuizList from "../../components/UserQuizList/UserQuizList";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Profile() {
-  const { state } = useLocation();
-  const navigate = useNavigate();
   sessionStorage.getItem("token");
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
   function logOut() {
     sessionStorage.removeItem("token");
@@ -17,7 +17,7 @@ export default function Profile() {
     <div className="profile">
       <div className="profile__header">
         <button className="profile__header-logout" onClick={logOut}>
-          log out
+          <u>log out</u>
         </button>
         <h1 className="profile__header-title">welcome {state.username}</h1>
       </div>

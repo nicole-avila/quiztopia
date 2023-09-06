@@ -7,21 +7,28 @@
   padding: 1rem;
   color: $white;
   height: 60vh;
+  background-color: rgba(0, 0, 0, 0.578);
 
+  &__title-empty {
+    @include font;
+    font-size: 11px;
+    color: $white;
+  }
   & section {
-    height: 350px;
+    height: 300px;
     overflow: scroll;
   }
   &__title {
-    @include fontTitle;
+    @include font;
     font-size: 3rem;
-    font-weight: 200;
+    font-weight: 400;
     line-height: normal;
+    color: $white;
+    margin: 1rem;
   }
 
   &__quiz-container {
     width: 200px;
-
     border-radius: 3px;
     height: 30px;
     display: flex;
@@ -43,5 +50,14 @@
 
   &__delete-btn {
     width: 15px;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 399px) {
+  .user-quiz {
+    &__title {
+      font-size: 1.7rem;
+      margin-top: 1.5rem;
+    }
   }
 }

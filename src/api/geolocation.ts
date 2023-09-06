@@ -9,7 +9,7 @@ export async function geolocation(
     navigator.geolocation.getCurrentPosition(
       (position: GeolocationPosition) => {
         const coords: GeolocationCoordinates = position.coords;
-        setPosition({ lat: coords.latitude, lon: coords.longitude });
+        setPosition({ latitude: coords.latitude, longitude: coords.longitude });
         setCenter([coords.longitude, coords.latitude]);
       }
     );

@@ -5,48 +5,56 @@ import { fetchDeleteQuiz } from "../../api/fetchDeleteQuiz";
 import { Quiz } from "../../interfaces";
 
 export default function UserQuizList({ username }: Quiz) {
-  const [myQuizzes, setMyQuizzes] = useState<Quiz[]>([]);
-  const [deleteQuizId, setDeleteQuizId] = useState<string>("");
+  const [userQuizzes, setUserQuizzes] = useState<Quiz[]>([]);
 
   useEffect(() => {
     async function fetchMyQuizzes() {
       try {
         const data = await fetchGetAllQuiz();
 
-        const usersQuizzes = data.filter((quiz) => quiz.username === username);
-        setMyQuizzes(usersQuizzes);
+        const quizzes = data.filter((quiz) => quiz.username === username);
+        setUserQuizzes(quizzes);
       } catch (error) {
-        console.log("något fel", error);
+        console.log(
+          "An error occurred while retrieving the user's quiz:",
+          error
+        );
       }
     }
     fetchMyQuizzes();
   }, []);
-  console.log(deleteQuizId);
 
   async function deleteUserQuiz(deleteQuizId: string) {
     try {
-      const deleteData = await fetchDeleteQuiz(deleteQuizId);
-      console.log(deleteData);
-    } catch (error) {}
-    console.log("klick");
+      await fetchDeleteQuiz(deleteQuizId);
+      setUserQuizzes((prevQuizzes) =>
+        prevQuizzes.filter((qui) => qui.quizId !== deleteQuizId)
+      );
+    } catch (error) {
+      console.error("Error deleting quiz:", error);
+    }
   }
 
   return (
     <div className="user-quiz">
-      <h2 className="user-quiz__title">My Quiz List</h2>{" "}
+      {userQuizzes.length === 0 ? (
+        <h3 className="user-quiz__title-empty">Let's create your first quiz</h3>
+      ) : (
+        <h2 className="user-quiz__title">
+          {userQuizzes.length > 1 ? "your quizzes" : "your quiz"}
+        </h2>
+      )}
+
       <section>
-        {myQuizzes.map((quiz) => (
-          <article
-            onClick={() => setDeleteQuizId(quiz.quizId)}
-            className="user-quiz__quiz-container"
-            key={quiz.quizId}
-          >
+        {userQuizzes.map((quiz) => (
+          <article className="user-quiz__quiz-container" key={quiz.quizId}>
             <p> {quiz.quizId}</p>
             <img
-              onClick={() => deleteUserQuiz(deleteQuizId)}
+              onClick={() => deleteUserQuiz(quiz.quizId)}
               className="user-quiz__delete-btn"
               src="../../src/assets/trash.svg"
-              alt=""
+              alt="
+              a black dustbin with a lid"
             />
           </article>
         ))}
@@ -54,7 +62,3 @@ export default function UserQuizList({ username }: Quiz) {
     </div>
   );
 }
-
-// setMyQuizzes((prevMyQuizzes) =>
-//   prevMyQuizzes.filter((quiz) => quiz.quizId !== quizId)
-// );

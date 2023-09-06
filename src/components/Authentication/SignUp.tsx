@@ -1,15 +1,26 @@
 import "./Authentication.scss";
 import { useState } from "react";
 import { authSignUpJwc } from "../../features/authSignUpJwc";
+import { ApiSignUpResponse } from "../../interfaces";
 
 export default function SignUp() {
   const [message, setMessage] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  // navigera till login efter lyckad signering
 
   async function handleSignUp() {
-    await authSignUpJwc(username, password, setMessage);
+    try {
+      const data: ApiSignUpResponse = await authSignUpJwc(username, password);
+      if (data.success) {
+        setMessage("Sign up success! You can now Login");
+      } else {
+        setMessage("Sorry, choose another username");
+        setUsername("");
+        setPassword("");
+      }
+    } catch (error) {
+      console.error("Error during sign up", error);
+    }
   }
 
   return (

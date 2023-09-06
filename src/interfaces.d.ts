@@ -10,13 +10,32 @@ export interface QuestionData {
   question: string;
   answer: string;
   location: QuestionCoords;
+  success?: boolean;
 }
 
 export interface QuestionCoords {
   longitude: string;
   latitude: string;
 }
+
 export interface CoordsProps {
-  lat: number;
-  lon: number;
+  latitude: number;
+  longitude: number;
 }
+
+export interface FormQuizProps {
+  quiz: string;
+}
+
+export interface ApiLoginResponse {
+  success: boolean;
+  message?: string;
+  token?: string;
+}
+
+export interface ApiSignUpResponse {
+  success: boolean;
+  message?: string;
+}
+
+export type setState<T> = React.Dispatch<React.SetStateAction<T>>;

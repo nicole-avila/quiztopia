@@ -7,7 +7,7 @@
     flex-direction: column;
   }
   &__header-logout {
-    @include btn;
+    @include btnNoBorder;
     margin-left: auto;
   }
   &__header-title {
@@ -15,10 +15,18 @@
     color: $white;
     line-height: normal;
     margin-right: auto;
-    margin-top: 0;
   }
 
-  &__container {
-    background: $op-night;
+  // &__container {
+  //   background: $op-night;
+  // }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 399px) {
+  .profile {
+    &__header-title {
+      margin: 1rem auto;
+      font-weight: 100;
+    }
   }
 }

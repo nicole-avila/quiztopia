@@ -1,32 +1,28 @@
-type setState<T> = React.Dispatch<React.SetStateAction<T>>;
-
-interface ApiSignUpResponse {
-  success: boolean;
-  message?: string;
-}
+import { ApiSignUpResponse } from "../interfaces";
 
 export async function authSignUpJwc(
   username: string,
-  password: string,
-  setMessage: setState<string>
+  password: string
 ): Promise<ApiSignUpResponse> {
-  const url =
-    "https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/auth/signup";
-  const settings = {
-    method: "POST",
-    body: JSON.stringify({
-      username: username,
-      password: password,
-    }),
-  };
-  const response = await fetch(url, settings);
-  const data: ApiSignUpResponse = await response.json();
-  console.log("hantera registrering", data);
-  if (data.success) {
-    console.log("Registrering klar");
-    setMessage(""); // Rensa meddelandet om inloggningen lyckades
+  try {
+    const url =
+      "https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/auth/signup";
+    const settings = {
+      method: "POST",
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    };
+    const response = await fetch(url, settings);
+    const data: ApiSignUpResponse = await response.json();
+
+    if (data.success) {
+      console.log("Sign up succes!");
+    }
     return data;
-  } else {
-    setMessage("Användarnamet är upptaget");
+  } catch (error) {
+    console.error("An error occurred while processing your request", error);
+    throw error;
   }
 }
