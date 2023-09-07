@@ -2,33 +2,64 @@
 @import "../../sass/_mixins";
 
 .quiz {
+  &__mapbox {
+    min-height: 290px;
+  }
   &__list-container {
-    background: $op-night;
+    background: $night;
+    width: fit-content;
+    margin: 1rem auto;
     height: 200px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     overflow: scroll;
-    border: 10px solid $white;
+    padding: 1rem 0;
+    border: 10px solid $op-night;
   }
   &__user-list {
-    background: transparent;
-    width: 200px;
-    margin: 0.4rem 0.6rem 0.4rem 0;
-    max-width: 200px;
-    height: 50px;
-    border: 1px solid $white;
-    border-radius: 8px;
+    background: $op-white;
+    height: auto;
+    width: 300px;
+    margin: 0.2rem auto;
+    // margin: 0.4rem 0.6rem 0.4rem 0;
+    // border: 1px solid $white;
+    padding: 0.1rem 0;
   }
   &__user {
     color: $white;
     margin: 0;
     text-transform: uppercase;
     font-size: 10px;
+    padding-bottom: 0.3rem;
   }
-  &__map-question {
-    background: $white;
-    max-width: 500px;
-    margin: auto;
-  }
+  // &__map-question {
+  //   background: blue;
+  //   max-width: 500px;
+  //   margin: auto;
+  // }
 }
+// @media only screen and (min-width: 0px) and (max-width: 399px) {
+//   .quiz {
+//     &__list-container {
+//       height: 150px;
+//       border: 5px solid $op-night;
+//       margin: 0.5rem auto;
+//       padding: 0.5rem 0;
+//     }
+//     &__user-list {
+//       background: $op-white;
+//       height: auto;
+//       width: 250px;
+//       margin: 0.2rem auto;
+//       // margin: 0.4rem 0.6rem 0.4rem 0;
+//       // border: 1px solid $white;
+//     }
+//     &__user {
+//       color: $white;
+//       margin: 0;
+//       text-transform: uppercase;
+//       font-size: 8px;
+//     }
+//   }
+// }

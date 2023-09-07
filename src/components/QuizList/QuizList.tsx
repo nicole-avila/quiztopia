@@ -37,12 +37,15 @@ export default function QuizList() {
       setLocations(questions);
       console.log("userData:", userData);
     } catch (error) {
-      console.error("något fel", error);
+      console.error("An error occurred while processing your request.", error);
     }
   }
 
   return (
     <div className="quiz">
+      <div className="quiz__mapbox">
+        {locations.length > 0 && <GameMapbox locations={locations} />}
+      </div>
       <section className="quiz__list-container">
         {quizzes.map((quiz, index) => (
           <article
@@ -57,21 +60,17 @@ export default function QuizList() {
           </article>
         ))}
       </section>
-
-      <section className="quiz__map-container">
-        {selectedQuiz &&
-          selectedQuiz.questions.map((question, index) => (
-            <p key={index} className="quiz__map-question">
-              Fråga: {question.question}
-              {/* <br />
-              Svar: {question.answer} */}
-            </p>
-          ))}
-        <div className="quiz__mapbox"></div>
-      </section>
-      <div>
-        <GameMapbox locations={locations} />
-      </div>
     </div>
   );
 }
+
+// <section className="quiz__map-container">
+// {selectedQuiz &&
+//   selectedQuiz.questions.map((question, index) => (
+//     <p key={index} className="quiz__map-question">
+//       Fråga: {question.question}
+//       {/* <br />
+//       Svar: {question.answer} */}
+//     </p>
+//   ))}
+// </section>

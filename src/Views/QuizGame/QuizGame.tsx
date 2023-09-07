@@ -9,7 +9,9 @@ export default function QuizGame() {
       <h1 onClick={() => navigate("/")} className="quiz-game__title">
         quiztopia
       </h1>
-      <QuizList />
+      <div className="quiz-game__container">
+        <QuizList />
+      </div>
     </div>
   );
 }

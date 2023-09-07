@@ -29,7 +29,6 @@ export default function Mapbox({
   useEffect(() => {
     if (mapRef.current || !mapContainer.current) return;
     mapRef.current = new MapGl({
-      //Skapar en ny MapboxGL och sparar den i mapRef
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v12",
       center: [lon, lat],

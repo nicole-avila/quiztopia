@@ -1,59 +1,85 @@
-import "mapbox-gl/dist/mapbox-gl.css";
-import mapboxgl, { Map as MapGlQuiz } from "mapbox-gl";
+import "./GameMapbox.scss";
+import mapboxgl, { LngLatLike, Map as MapGlQuiz } from "mapbox-gl";
 import { Marker } from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
-import { QuestionData } from "../../interfaces";
+import { GameMapboxProps } from "../../interfaces";
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_API_KEY;
-
-export interface GameMapboxProps {
-  locations: QuestionData[] | null;
-}
 
 export default function GameMapbox({ locations }: GameMapboxProps) {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapGlQuiz | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
+  const [showMap, setShowMap] = useState<boolean>(true);
 
   useEffect(() => {
-    if (!mapContainer.current || !locations) return;
-
+    if (!mapContainer.current || locations?.length === 0) {
+      setShowMap(false);
+      return;
+    }
     mapRef.current?.remove();
 
     try {
       mapRef.current = new MapGlQuiz({
         container: mapContainer.current,
-        style: "mapbox://styles/mapbox/streets-v12",
-        center: [11.9545, 57.7006],
-        zoom: 8,
+        style: "mapbox://styles/mapbox/outdoors-v12",
       });
 
       const map: MapGlQuiz = mapRef.current;
 
-      locations.forEach((location) => {
-        const { longitude, latitude } = location.location;
+      locations.forEach((question) => {
+        const { location, question: questionText } = question;
+        const { longitude, latitude } = location;
+
         new Marker()
           .setLngLat([parseFloat(longitude), parseFloat(latitude)])
-          .addTo(map);
+          .addTo(map)
+          .setPopup(
+            new mapboxgl.Popup({ offset: 10 }).setHTML(`<p>${questionText}</p>`)
+          );
       });
+
+      const markerLngLats: LngLatLike[] = locations.map((question) => {
+        const { location } = question;
+        const { longitude, latitude } = location;
+        return [parseFloat(longitude), parseFloat(latitude)];
+      });
+      const bounds = new mapboxgl.LngLatBounds();
+      markerLngLats.forEach((lngLat) => {
+        bounds.extend(lngLat);
+      });
+      map.fitBounds(bounds, { padding: 50, maxZoom: 7 });
+
+      setShowErrorMessage(false);
     } catch (error) {
-      setErrorMessage("Quizet saknar koordinater");
+      setShowMap(false);
+      setShowErrorMessage(true);
     }
   }, [locations]);
-  console.log(locations);
+
+  useEffect(() => {
+    if (showMap === false) {
+      setShowErrorMessage(true);
+      setShowMap(true);
+    }
+  }, [showMap]);
 
   return (
-    <div>
-      <b style={{ color: "purple", background: "#ffffff" }}></b>
-      <p>{errorMessage}</p>
-      <div
-        ref={mapContainer}
-        style={{
-          width: "100%",
-          height: "200px",
-          margin: "1rem auto",
-          borderRadius: "8px",
-        }}
-      />
+    <div className="game-mapbox">
+      {showMap && locations.length > 0 && (
+        <div
+          ref={mapContainer}
+          style={{
+            width: "80%",
+            maxHeight: "300px",
+            height: "280px",
+            margin: "1rem auto",
+            borderRadius: "8px",
+          }}
+        />
+      )}
+      {showErrorMessage && (
+        <p className="game-mapbox__p">Quizet saknar koordinater</p>
+      )}
     </div>
   );
 }
