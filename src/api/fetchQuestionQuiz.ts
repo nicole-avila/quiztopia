@@ -4,7 +4,6 @@ export async function fetchQuestionQuiz(
   formData: QuestionData
 ): Promise<QuestionData> {
   const token = sessionStorage.getItem("token");
-  console.log(formData);
 
   try {
     const url =
@@ -18,13 +17,12 @@ export async function fetchQuestionQuiz(
       },
       body: JSON.stringify(formData),
     };
-
     const response = await fetch(url, settings);
     const data: QuestionData = await response.json();
-    console.log("Adding quiz:", data);
     return data;
   } catch (error) {
-    console.log("Något fel skedde med din QUIZ:", error);
+    console.error("Something went wrong with your quiz:", error);
+
     throw error;
   }
 }

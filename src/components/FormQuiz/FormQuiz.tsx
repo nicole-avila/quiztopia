@@ -1,11 +1,11 @@
+import "./FormQuiz.scss";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { QuestionData, FormQuizProps } from "../../interfaces";
 import { fetchQuestionQuiz } from "../../api/fetchQuestionQuiz";
 import Mapbox from "../Mapbox/Mapbox";
 
 export default function FormQuiz(props: FormQuizProps) {
-  const navigate = useNavigate();
+  const [message, setMessage] = useState<string>("");
   const [newLat, setNewLat] = useState<number>(0);
   const [newLon, setNewLon] = useState<number>(0);
   const lat = newLat.toString();
@@ -36,6 +36,7 @@ export default function FormQuiz(props: FormQuizProps) {
     e.preventDefault();
     try {
       const data = await fetchQuestionQuiz(formData);
+      console.log(data);
 
       if (data.success) {
         setFormData({
@@ -47,41 +48,52 @@ export default function FormQuiz(props: FormQuizProps) {
             longitude: "",
           },
         });
-        console.log(formData);
       }
+      setMessage("quiestion add");
     } catch (error) {
-      console.log("Något fel skedde med din frågan:", error);
+      console.error("Something went wrong with your question:", error);
     }
   }
 
+  const handleResetMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMessage("");
+    setFormData({
+      ...formData,
+      question: e.target.value,
+    });
+  };
+
   return (
     <div className="form">
-      <h4 className="form__title">Quiz name: {formData.name}</h4>
-      <button onClick={() => navigate("/game")}>play the quiz game </button>
+      <h4 className="form__title">
+        Quiz name, <u>{formData.name}</u>
+      </h4>
+
       <form onSubmit={handleFormSubmit}>
-        <textarea
-          name="question"
-          value={formData.question}
-          onChange={(e) =>
-            setFormData({ ...formData, question: e.target.value })
-          }
-          placeholder="Your question here..."
-          id="question"
-          cols="30"
-          rows="5"
-        ></textarea>
-        <textarea
-          name="answer"
-          value={formData.answer}
-          onChange={(e) => setFormData({ ...formData, answer: e.target.value })}
-          placeholder="Your answer here.."
-          id="answer"
-          cols="30"
-          rows="5"
-        ></textarea>
+        <div className="form__input-container">
+          <input
+            type="text"
+            name="question"
+            value={formData.question}
+            onChange={handleResetMessage}
+            placeholder="Your question here..."
+          />
+          <input
+            type="text"
+            name="answer"
+            value={formData.answer}
+            onChange={(e) =>
+              setFormData({ ...formData, answer: e.target.value })
+            }
+            placeholder="Your answer here.."
+          />
+        </div>
         <Mapbox setNewLat={setNewLat} setNewLon={setNewLon} />
 
-        <button type="submit">Add Your Question</button>
+        <p className="form__message">{message}</p>
+        <button className="form__btn" type="submit">
+          Add Your Question
+        </button>
       </form>
     </div>
   );

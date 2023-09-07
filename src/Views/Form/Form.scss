@@ -1,0 +1,19 @@
+@import "../../sass/_colors";
+@import "../../sass/_mixins";
+
+.form-view {
+  &__header {
+    padding: 0 0.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__img-container {
+    width: 30px;
+  }
+  &__img {
+    width: 100%;
+  }
+  &__btn-play-quiz {
+    @include btn;
+  }
+}

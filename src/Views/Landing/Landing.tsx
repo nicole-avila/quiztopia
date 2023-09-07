@@ -10,12 +10,12 @@ export default function Landing() {
   const [showSignUp, setShowSignUp] = useState<boolean>(false);
   const [showLogin, setShowLogin] = useState<boolean>(false);
 
-  function toggelSign() {
+  function toggelSignUpComponent() {
     setShowSignUp(!showSignUp);
     setShowLogin(false);
   }
 
-  function toggelLogin() {
+  function toggelLoginComponent() {
     setShowLogin(!showLogin);
     setShowSignUp(false);
   }
@@ -35,7 +35,7 @@ export default function Landing() {
             if (showSignUp) {
               setShowSignUp(false);
             } else {
-              toggelSign();
+              toggelSignUpComponent();
             }
           }}
         >
@@ -47,7 +47,7 @@ export default function Landing() {
             if (showLogin) {
               setShowLogin(false);
             } else {
-              toggelLogin();
+              toggelLoginComponent();
             }
           }}
         >

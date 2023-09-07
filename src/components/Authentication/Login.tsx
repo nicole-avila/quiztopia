@@ -1,7 +1,7 @@
 import "./Authentication.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { authLoginJwc } from "../../features/authLoginJwc";
+import { authLoginJwc } from "../../fetchJWC/authLoginJwc";
 import { ApiLoginResponse } from "../../interfaces";
 
 export default function Login() {
@@ -18,10 +18,8 @@ export default function Login() {
         password,
         setMessage
       );
-      console.log("Data from authLogin", data);
 
       if (data && data.success) {
-        setMessage("Success Login!");
         navigate("/profile", { state: { username } });
       } else {
         setUsername("");

@@ -1,2 +1,45 @@
 @import "../../sass/_colors";
 @import "../../sass/_mixins";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    @include font;
+    font-size: 1rem;
+    color: $white;
+    margin: 0.5rem;
+  }
+
+  &__input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  & input {
+    max-width: 300px;
+    width: 250px;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    text-indent: 4px;
+  }
+  &__btn {
+    @include btnBig;
+  }
+  &__message {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgb(13, 195, 13);
+    text-transform: lowercase;
+    font-style: italic;
+    margin: 0.3rem;
+    letter-spacing: 1px;
+  }
+}

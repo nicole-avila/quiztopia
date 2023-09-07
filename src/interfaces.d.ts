@@ -1,3 +1,26 @@
+export interface GameMapboxProps {
+  locations: QuestionData[];
+}
+
+export interface CreateQuizResponse {
+  success: true;
+  quizId: string;
+  token?: string;
+}
+
+export interface UserQuizListProps {
+  username?: string;
+}
+
+// export interface QuizData {
+//   quiz: {
+//     questions: QuestionData[];
+//     quizId: string;
+//     userId: string;
+//     username: string;
+//   };
+// }
+
 export interface Quiz {
   questions: QuestionData[];
   quizId: string;
@@ -27,6 +50,18 @@ export interface FormQuizProps {
   quiz: string;
 }
 
+export interface ApiAccountResponse {
+  success: boolean;
+  message?: string;
+  account?: Account;
+}
+
+export interface Account {
+  password: string;
+  userId: string;
+  username: string;
+}
+
 export interface ApiLoginResponse {
   success: boolean;
   message?: string;
@@ -38,4 +73,5 @@ export interface ApiSignUpResponse {
   message?: string;
 }
 
+// export type sSN<T> = React.Dispatch<React.SetStateAction<T>>;
 export type setState<T> = React.Dispatch<React.SetStateAction<T>>;

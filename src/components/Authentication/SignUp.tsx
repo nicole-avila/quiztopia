@@ -1,6 +1,6 @@
 import "./Authentication.scss";
 import { useState } from "react";
-import { authSignUpJwc } from "../../features/authSignUpJwc";
+import { authSignUpJwc } from "../../fetchJWC/authSignUpJwc";
 import { ApiSignUpResponse } from "../../interfaces";
 
 export default function SignUp() {

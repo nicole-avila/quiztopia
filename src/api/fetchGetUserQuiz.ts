@@ -10,14 +10,13 @@ export async function fetchGetUserQuiz(
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(`Det gick inte att hämta från:, ${username}`);
+      throw new Error(`Failed to download from: ${username}`);
     }
-
     const data: Quiz = await response.json();
     console.log(data);
     return data;
   } catch (error) {
-    console.log("Något fel skedde", error);
+    console.error("Something went wrong", error);
 
     throw error;
   }

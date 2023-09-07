@@ -9,10 +9,10 @@ export async function fetchGetAllQuiz(): Promise<Quiz[]> {
       throw new Error(`Hämtningen av status misslyckades ${response.status}`);
     }
     const data = await response.json();
-    // console.log(data);
     return data.quizzes;
   } catch (error) {
-    console.log("Något fel skedd:", error);
+    console.error("oops, try agian!", error);
+
     throw error;
   }
 }

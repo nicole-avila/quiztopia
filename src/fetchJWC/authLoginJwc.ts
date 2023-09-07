@@ -20,12 +20,11 @@ export async function authLoginJwc(
     sessionStorage.setItem("token", JSON.stringify(data.token));
 
     if (data.success) {
-      console.log("logged in");
       return data;
     } else {
       setMessage("Login failed, please try again");
     }
   } catch (error) {
-    console.error("Error", error);
+    console.error("Oops, try again", error);
   }
 }

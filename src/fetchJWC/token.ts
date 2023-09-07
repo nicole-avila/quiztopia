@@ -1,14 +1,4 @@
-interface ApiAccountResponse {
-  success: boolean;
-  message?: string;
-  account?: Account;
-}
-
-interface Account {
-  password: string;
-  userId: string;
-  username: string;
-}
+import { ApiAccountResponse } from "../interfaces";
 
 export async function token() {
   const url =
@@ -21,5 +11,5 @@ export async function token() {
   };
   const response = await fetch(url, settings);
   const data: ApiAccountResponse = await response.json();
-  console.log("handle Token Login:", data);
+  return data;
 }

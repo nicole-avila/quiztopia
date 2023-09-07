@@ -1,24 +1,23 @@
-import "./QuizList.scss";
+import "./QuizzesList.scss";
 import { fetchGetAllQuiz } from "../../api/fetchGetAllQuiz";
 import { useEffect, useState } from "react";
-import { Quiz, QuestionData } from "../../interfaces";
+import { Quiz as QuizData, QuestionData } from "../../interfaces";
 import { fetchGetUserQuiz } from "../../api/fetchGetUserQuiz";
 import GameMapbox from "../GameMapbox/GameMapbox";
 
-export default function QuizList() {
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
-  const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
+export default function QuizzesList() {
+  const [quizzes, setQuizzes] = useState<QuizData[]>([]);
+  const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
   const [locations, setLocations] = useState<QuestionData[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const quizzes: Quiz[] = await fetchGetAllQuiz();
-        console.log(quizzes);
+        const quizzes: QuizData[] = await fetchGetAllQuiz();
 
         setQuizzes(quizzes);
       } catch (error) {
-        console.log(
+        console.error(
           "An error occurred while retrieving the user's quiz:",
           error
         );
@@ -27,15 +26,19 @@ export default function QuizList() {
     fetchData();
   }, []);
 
-  async function handleGetUserQuiz(quiz: Quiz) {
+  async function handleGetUserQuiz(quiz: QuizData) {
     const { username, quizId, userId } = quiz;
 
     try {
-      const userData = await fetchGetUserQuiz(username, quizId, userId);
-      const questions = userData.quiz.questions;
+      const userData: QuizData = await fetchGetUserQuiz(
+        username,
+        quizId,
+        userId
+      );
+
+      const questions = quiz.questions;
       setSelectedQuiz(quiz);
       setLocations(questions);
-      console.log("userData:", userData);
     } catch (error) {
       console.error("An error occurred while processing your request.", error);
     }

@@ -1,10 +1,11 @@
 import "./CreateQuiz.scss";
 import { useState } from "react";
-import { fetchCreateQuiz } from "../../api/fetchCreateQuiz";
 import { useNavigate } from "react-router-dom";
+import { fetchCreateQuiz } from "../../api/fetchCreateQuiz";
 
 export default function CreateQuiz() {
   const [quizName, setQuizName] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
   const navigate = useNavigate();
 
   async function goToForm() {
@@ -13,24 +14,29 @@ export default function CreateQuiz() {
 
       if (data && data.success) {
         navigate("/form", { state: { quizName } });
+      } else {
+        setMessage("Quiz name is already taken, choose another");
       }
     } catch (error) {
-      console.error("error during creating quiz name", error);
+      console.error("Error during creating quiz name", error);
     }
   }
 
   return (
     <div className="create-quiz">
-      <input
-        className="create-quiz__input"
-        onChange={(e) => setQuizName(e.target.value)}
-        type="text"
-        placeholder="Quiz name here..."
-      />
+      <p>{message}</p>
+      <div>
+        <input
+          className="create-quiz__input"
+          onChange={(e) => setQuizName(e.target.value)}
+          type="text"
+          placeholder="Quiz name here..."
+        />
 
-      <button className="create-quiz__btn" onClick={goToForm}>
-        Create Quiz
-      </button>
+        <button className="create-quiz__btn" onClick={goToForm}>
+          Create Quiz
+        </button>
+      </div>
     </div>
   );
 }

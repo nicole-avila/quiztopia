@@ -2,9 +2,9 @@ import "./UserQuizList.scss";
 import { useEffect, useState } from "react";
 import { fetchGetAllQuiz } from "../../api/fetchGetAllQuiz";
 import { fetchDeleteQuiz } from "../../api/fetchDeleteQuiz";
-import { Quiz } from "../../interfaces";
+import { Quiz, UserQuizListProps } from "../../interfaces";
 
-export default function UserQuizList({ username }: Quiz) {
+export default function UserQuizList({ username }: UserQuizListProps) {
   const [userQuizzes, setUserQuizzes] = useState<Quiz[]>([]);
 
   useEffect(() => {
@@ -15,8 +15,8 @@ export default function UserQuizList({ username }: Quiz) {
         const quizzes = data.filter((quiz) => quiz.username === username);
         setUserQuizzes(quizzes);
       } catch (error) {
-        console.log(
-          "An error occurred while retrieving the user's quiz:",
+        console.error(
+          `An error occurred while retrieving the ${username} quiz.`,
           error
         );
       }
@@ -28,7 +28,7 @@ export default function UserQuizList({ username }: Quiz) {
     try {
       await fetchDeleteQuiz(deleteQuizId);
       setUserQuizzes((prevQuizzes) =>
-        prevQuizzes.filter((qui) => qui.quizId !== deleteQuizId)
+        prevQuizzes.filter((quizItem) => quizItem.quizId !== deleteQuizId)
       );
     } catch (error) {
       console.error("Error deleting quiz:", error);

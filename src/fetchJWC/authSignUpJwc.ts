@@ -18,11 +18,12 @@ export async function authSignUpJwc(
     const data: ApiSignUpResponse = await response.json();
 
     if (data.success) {
-      console.log("Sign up succes!");
+      // console.log("Sign up succes!");
     }
     return data;
   } catch (error) {
     console.error("An error occurred while processing your request", error);
+
     throw error;
   }
 }
