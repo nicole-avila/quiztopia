@@ -27,7 +27,7 @@ export default function Login() {
       }
       if (data?.token) {
         setToken(data.token);
-        sessionStorage.setItem("token", data.token);
+        sessionStorage.setItem("token", token);
       }
     } catch (error) {
       console.error("Error during login", error);
