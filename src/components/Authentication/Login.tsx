@@ -1,4 +1,5 @@
 import "./Authentication.scss";
+import profile from "../../../public/assets/profile-icon.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authLoginJwc } from "../../fetchJWC/authLoginJwc";
@@ -35,11 +36,7 @@ export default function Login() {
   return (
     <div className="auth">
       <div className="auth__img-contianer">
-        <img
-          className="auth__profile-img"
-          src="../../src/assets/profile-icon.svg"
-          alt=""
-        />
+        <img className="auth__profile-img" src={profile} alt="man icon blue" />
       </div>
       <p className="auth__message">{message}</p>
       <div className="auth__container">

@@ -1,4 +1,5 @@
 import "./Authentication.scss";
+import profile from "../../../public/assets/profile-icon.svg";
 import { useState } from "react";
 import { authSignUpJwc } from "../../fetchJWC/authSignUpJwc";
 import { ApiSignUpResponse } from "../../interfaces";
@@ -26,11 +27,7 @@ export default function SignUp() {
   return (
     <div className="auth">
       <div className="auth__img-contianer">
-        <img
-          className="auth__profile-img"
-          src="../../src/assets/profile-icon.svg"
-          alt=""
-        />
+        <img className="auth__profile-img" src={profile} alt="man icon blue" />
       </div>
       <p className="auth__message">{message}</p>
       <div className="auth__container">

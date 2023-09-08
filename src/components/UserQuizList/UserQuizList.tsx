@@ -1,4 +1,5 @@
 import "./UserQuizList.scss";
+import bin from "../../../public/assets/trash.svg";
 import { useEffect, useState } from "react";
 import { fetchGetAllQuiz } from "../../api/fetchGetAllQuiz";
 import { fetchDeleteQuiz } from "../../api/fetchDeleteQuiz";
@@ -52,9 +53,8 @@ export default function UserQuizList({ username }: UserQuizListProps) {
             <img
               onClick={() => deleteUserQuiz(quiz.quizId)}
               className="user-quiz__delete-btn"
-              src="../../src/assets/trash.svg"
-              alt="
-              a black dustbin with a lid"
+              src={bin}
+              alt="a black dustbin with a lid"
             />
           </article>
         ))}

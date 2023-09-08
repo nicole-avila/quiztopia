@@ -1,4 +1,5 @@
 import "./Form.scss";
+import back from "../../../public/assets/go-back.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import FormQuiz from "../../components/FormQuiz/FormQuiz";
 
@@ -14,7 +15,7 @@ export default function Form() {
           <img
             className="form-view__img-back"
             onClick={() => navigate(-1)}
-            src="../../src/assets/go-back.svg"
+            src={back}
             alt=""
           />
         </div>
