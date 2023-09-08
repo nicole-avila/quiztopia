@@ -25,26 +25,35 @@ export default function SignUp() {
 
   return (
     <div className="auth">
+      <div className="auth__img-contianer">
+        <img
+          className="auth__profile-img"
+          src="../../src/assets/profile-icon.svg"
+          alt=""
+        />
+      </div>
       <p className="auth__message">{message}</p>
-      <input
-        className="auth__input"
-        type="text"
-        placeholder="username"
-        onChange={(e) => setUsername(e.target.value)}
-        name="username"
-        value={username}
-      />
-      <input
-        className="auth__input"
-        type="password"
-        placeholder="password"
-        onChange={(e) => setPassword(e.target.value)}
-        name="password"
-        value={password}
-      />
-      <button className="auth__signup-btn" onClick={handleSignUp}>
-        sign up
-      </button>
+      <div className="auth__container">
+        <input
+          className="auth__input"
+          type="text"
+          placeholder="username"
+          onChange={(e) => setUsername(e.target.value)}
+          name="username"
+          value={username}
+        />
+        <input
+          className="auth__input"
+          type="password"
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          value={password}
+        />
+        <button className="auth__signup-btn" onClick={handleSignUp}>
+          sign up
+        </button>
+      </div>
     </div>
   );
 }

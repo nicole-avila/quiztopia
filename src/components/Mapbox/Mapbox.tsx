@@ -1,30 +1,41 @@
+import "./Mapbox.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
-import mapboxgl, { Map as MapGl } from "mapbox-gl";
+import mapboxgl, { Map as MapGl, Marker } from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
 import { geolocation } from "../../api/geolocation";
-import { CoordsProps } from "../../interfaces";
+import { CoordsProps, setState } from "../../interfaces";
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_API_KEY;
 
-type sSN<T> = React.Dispatch<React.SetStateAction<T>>;
-
 interface LocationProps {
-  setNewLat: sSN<number>;
-  setNewLon: sSN<number>;
+  setNewLat: setState<number>;
+  setNewLon: setState<number>;
 }
 
 export default function Mapbox({
   setNewLat,
   setNewLon,
 }: LocationProps): JSX.Element {
-  const mapContainer = useRef<HTMLDivElement | null>(null); //skapar en ref för att kunna referera till map(kartan) containern
-  const mapRef = useRef<MapGl | null>(null); // för att kunna referera till mapboxGl
+  const mapContainer = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<MapGl | null>(null);
   const [selectedPosition, setSelectedPosition] = useState<CoordsProps | null>(
     null
   );
   const [position, setPosition] = useState<CoordsProps | null>(null);
+  const [message, setMessage] = useState<string>("");
   const lat: number = 57.7006818;
   const lon: number = 11.9545412;
   const zoom: number = 9;
+
+  const addMarker = (lngLat: mapboxgl.LngLat) => {
+    if (mapRef.current) {
+      if (mapRef.current.getLayer("marker")) {
+        mapRef.current.removeLayer("marker");
+        mapRef.current.removeSource("marker");
+      }
+
+      new Marker().setLngLat(lngLat).addTo(mapRef.current);
+    }
+  };
 
   useEffect(() => {
     if (mapRef.current || !mapContainer.current) return;
@@ -38,38 +49,32 @@ export default function Mapbox({
     const handleMapClicked = (e: any) => {
       setNewLat(e.lngLat.lat);
       setNewLon(e.lngLat.lng);
+      addMarker(e.lngLat);
     };
 
-    mapRef.current.on("click", handleMapClicked); //Lägger till/anropar klicket på KARTAN
+    mapRef.current.on("click", handleMapClicked);
   }, [lat, lon, zoom]);
-  console.log(position);
 
   useEffect(() => {
     if (mapRef.current !== null) {
-      //Körs när kartan har skapats, alltså när mapRef har triggats
-      geolocation(setPosition, (center) => mapRef.current?.setCenter(center)); // Geo körs efter mapbox-kartan har skapats
-    } //sätter kartans center med det ett nytt centrumvärde.
+      geolocation(setMessage, setPosition, (center) => {
+        mapRef.current?.setCenter(center);
+        addMarker(new mapboxgl.LngLat(center[1], center[0]));
+      });
+    }
   }, [mapRef.current]);
 
   return (
-    <div>
-      <div
-        ref={mapContainer}
-        style={{
-          width: "400px",
-          height: "200px",
-          margin: "1rem auto",
-          borderRadius: "8px",
-        }}
-      />
-      {selectedPosition && ( //om positionen har valts så renderar lat o lon koordinaterna
+    <div className="mapbox">
+      <p className="mapbox__message">{message}</p>
+      <div className="mapbox__map" ref={mapContainer} />
+      {selectedPosition && (
         <p>
           {" "}
-          Selected position: {selectedPosition.lat} latitude and{" "}
-          {selectedPosition.lon} longitude
+          Selected position: {selectedPosition.latitude} latitude and{" "}
+          {selectedPosition.longitude} longitude
         </p>
       )}
     </div>
   );
 }
-// Center position: {lat} latitude, {lon} longitude{" "}

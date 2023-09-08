@@ -16,6 +16,8 @@
   &__login-btn {
     @include btnNoBorder;
     margin: 0 0.5rem 0 0.5rem;
+    font-size: 1.2rem;
+    width: 120px;
   }
 
   &__hero-container {
@@ -68,6 +70,7 @@
   .landing {
     &__header {
       margin: 0 auto;
+      width: 300px;
     }
     &__hero-title {
       font-size: 3rem;

@@ -45,7 +45,7 @@ export default function UserQuizList({ username }: UserQuizListProps) {
         </h2>
       )}
 
-      <section>
+      <section className="user-quiz__container">
         {userQuizzes.map((quiz) => (
           <article className="user-quiz__quiz-container" key={quiz.quizId}>
             <p> {quiz.quizId}</p>

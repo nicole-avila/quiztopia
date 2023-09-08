@@ -30,11 +30,7 @@ export default function QuizzesList() {
     const { username, quizId, userId } = quiz;
 
     try {
-      const userData: QuizData = await fetchGetUserQuiz(
-        username,
-        quizId,
-        userId
-      );
+      await fetchGetUserQuiz(username, quizId, userId);
 
       const questions = quiz.questions;
       setSelectedQuiz(quiz);
@@ -59,21 +55,10 @@ export default function QuizzesList() {
             }`}
           >
             <b className="quiz__user">{quiz.quizId}</b>
-            <p className="quiz__user">made by, {quiz.username}</p>
+            <p className="quiz__user-made-by">made by, {quiz.username}</p>
           </article>
         ))}
       </section>
     </div>
   );
 }
-
-// <section className="quiz__map-container">
-// {selectedQuiz &&
-//   selectedQuiz.questions.map((question, index) => (
-//     <p key={index} className="quiz__map-question">
-//       Fråga: {question.question}
-//       {/* <br />
-//       Svar: {question.answer} */}
-//     </p>
-//   ))}
-// </section>

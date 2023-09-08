@@ -12,15 +12,6 @@ export interface UserQuizListProps {
   username?: string;
 }
 
-// export interface QuizData {
-//   quiz: {
-//     questions: QuestionData[];
-//     quizId: string;
-//     userId: string;
-//     username: string;
-//   };
-// }
-
 export interface Quiz {
   questions: QuestionData[];
   quizId: string;

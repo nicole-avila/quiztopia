@@ -1,4 +1,5 @@
 import "./GameMapbox.scss";
+import "../../sass/_mixins.scss";
 import mapboxgl, { LngLatLike, Map as MapGlQuiz } from "mapbox-gl";
 import { Marker } from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
@@ -73,7 +74,7 @@ export default function GameMapbox({ locations }: GameMapboxProps) {
             maxHeight: "300px",
             height: "280px",
             margin: "1rem auto",
-            borderRadius: "8px",
+            borderRadius: "2px",
           }}
         />
       )}

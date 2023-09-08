@@ -8,13 +8,14 @@
   color: $white;
   height: 60vh;
   background-color: rgba(0, 0, 0, 0.578);
+  border-radius: 6px;
 
   &__title-empty {
     @include font;
     font-size: 11px;
     color: $white;
   }
-  & section {
+  &__container {
     height: 300px;
     overflow: scroll;
   }
@@ -55,9 +56,15 @@
 
 @media only screen and (min-width: 0px) and (max-width: 399px) {
   .user-quiz {
+    height: fit-content;
+    padding: 0.3rem;
+
     &__title {
       font-size: 1.7rem;
-      margin-top: 1.5rem;
+      margin: 1rem;
+    }
+    &__container {
+      height: 200px;
     }
   }
 }

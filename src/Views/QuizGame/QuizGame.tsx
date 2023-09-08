@@ -1,5 +1,5 @@
 import "./QuizGame.scss";
-import QuizList from "../../components/QuizList/QuizList";
+import QuizzesList from "../../components/QuizzesList/QuizzesList";
 import { useNavigate } from "react-router-dom";
 
 export default function QuizGame() {
@@ -10,7 +10,7 @@ export default function QuizGame() {
         quiztopia
       </h1>
       <div className="quiz-game__container">
-        <QuizList />
+        <QuizzesList />
       </div>
     </div>
   );

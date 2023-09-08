@@ -6,20 +6,33 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // position: absolute;
-  background: $op-white;
-  width: 300px;
-  border-radius: 8px;
-  // top: 24%;
-  // left: 85%;
-  // transform: translate(-50%, -50%);
-  padding-bottom: 0.6rem;
+  background: $op-lighter;
+  border-radius: 6px;
+  padding: 1rem;
 
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+  }
+  &__img-contianer {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__profile-img {
+    width: 100%;
+    margin-left: auto;
+  }
   &__message {
-    margin: 0;
-    padding: 0.8rem;
-    font-size: 11px;
-    color: $white;
+    @include message;
   }
   &__input {
     width: 169px;
@@ -39,23 +52,38 @@
   &__login-btn,
   &__signup-btn {
     @include btn;
+    margin-top: 0.3rem;
   }
 }
 
 @media only screen and (min-width: 0px) and (max-width: 425px) {
   .auth {
-    // display: flex;
-    // align-self: ;
-    // align-items: center;
-
     position: absolute;
     background: $op-night;
-
     width: 280px;
     border-radius: 8px;
     top: 27%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding-bottom: 1rem;
+    margin: 0.9rem auto;
+    padding: 0.6rem;
+
+    &__img-contianer {
+      width: 50px;
+      height: 35px;
+      padding: 0.1rem;
+    }
+    &__profile-img {
+      width: 100%;
+    }
+    &__message {
+      color: $white;
+    }
+    &__login-btn,
+    &__signup-btn {
+      @include btn;
+      margin-top: 0.3rem;
+      background: $op-white;
+    }
   }
 }

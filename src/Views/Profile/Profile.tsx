@@ -16,7 +16,7 @@ export default function Profile() {
   return (
     <div className="profile">
       <div className="profile__header">
-        <button className="profile__header-logout" onClick={handleLogOut}>
+        <button className="profile__logout-btn" onClick={handleLogOut}>
           <u>log out</u>
         </button>
         <h1 className="profile__header-title">welcome {state.username}</h1>

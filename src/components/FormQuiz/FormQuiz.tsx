@@ -49,7 +49,7 @@ export default function FormQuiz(props: FormQuizProps) {
           },
         });
       }
-      setMessage("quiestion add");
+      setMessage("quiestion added");
     } catch (error) {
       console.error("Something went wrong with your question:", error);
     }
@@ -65,9 +65,7 @@ export default function FormQuiz(props: FormQuizProps) {
 
   return (
     <div className="form">
-      <h4 className="form__title">
-        Quiz name, <u>{formData.name}</u>
-      </h4>
+      <h4 className="form__title">Quiz name, {formData.name}</h4>
 
       <form onSubmit={handleFormSubmit}>
         <div className="form__input-container">
@@ -88,11 +86,11 @@ export default function FormQuiz(props: FormQuizProps) {
             placeholder="Your answer here.."
           />
         </div>
+        <p className="form__message">{message}</p>
         <Mapbox setNewLat={setNewLat} setNewLon={setNewLon} />
 
-        <p className="form__message">{message}</p>
         <button className="form__btn" type="submit">
-          Add Your Question
+          Add Question
         </button>
       </form>
     </div>

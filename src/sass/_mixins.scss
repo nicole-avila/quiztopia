@@ -1,17 +1,25 @@
 @import "../sass/_colors";
 
-@mixin font {
+@mixin message {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
+  margin: 0;
+  padding: 0.3rem;
+  font-size: 9px;
   color: $night;
+}
+
+@mixin font {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  color: $white;
 }
 
 @mixin fontTitle {
   text-transform: uppercase;
   font-family: "poppins", sans-serif;
   font-size: 150px;
-  line-height: 160px;
   font-weight: 700;
   letter-spacing: 6px;
   margin: auto;
@@ -24,17 +32,28 @@
   height: 30px;
   border-radius: 4px;
   border: none;
-  border: 1px solid #ff7149;
+  border: 1.5px solid $ocean;
+  background: $op-white;
+  color: $ocean;
+  text-transform: uppercase;
+  font-family: "poppins", sans-serif;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-weight: 400;
+}
+@mixin btnNoBorder {
+  width: 140px;
+  height: 30px;
+  border-radius: 4px;
+  border: none;
+  // border: 1px solid #ff5525;
   background: transparent;
-  color: #ff7149;
+  color: $white;
   text-transform: uppercase;
   font-family: "poppins", sans-serif;
   letter-spacing: 3px;
-  font-size: 14px;
-  font-weight: 200;
-}
-@mixin btnNoBorder {
-  @include btn;
+  font-size: 1rem;
+  font-weight: 700;
   border: none;
 }
 
@@ -43,13 +62,13 @@
   height: 49px;
   border-radius: 4px;
   border: 1px solid $white;
-  background: none;
+  background: #22498748;
   color: $white;
   text-transform: uppercase;
   font-family: "poppins", sans-serif;
   letter-spacing: 3px;
   font-size: 14px;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 @mixin btnRound {

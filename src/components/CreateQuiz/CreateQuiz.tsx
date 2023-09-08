@@ -24,7 +24,9 @@ export default function CreateQuiz() {
 
   return (
     <div className="create-quiz">
-      <p>{message}</p>
+      <div className="create-quiz__container">
+        <p className="create-quiz__message">{message}</p>
+      </div>
       <div>
         <input
           className="create-quiz__input"

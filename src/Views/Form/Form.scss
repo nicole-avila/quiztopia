@@ -10,10 +10,25 @@
   &__img-container {
     width: 30px;
   }
-  &__img {
+  &__img-back {
     width: 100%;
+    margin: 1rem;
   }
   &__btn-play-quiz {
-    @include btn;
+    @include btnBig;
+    height: 40px;
+    font-weight: 400;
+    color: $ocean;
+    border: 1px solid $ocean;
+    background: $op-white;
+    // -webkit-text-stroke: 0.1px #ffffff;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 399px) {
+  .form-view {
+    &__img-back {
+      margin: 0.2rem;
+    }
   }
 }

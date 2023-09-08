@@ -2,19 +2,27 @@
 @import "../../sass/_mixins";
 
 .profile {
+  width: 90vw;
+  margin: auto;
   &__header {
     display: flex;
     flex-direction: column;
   }
-  &__header-logout {
-    @include btnNoBorder;
-    margin-left: auto;
-  }
   &__header-title {
     @include font;
-    color: $white;
+    font-size: 3rem;
     line-height: normal;
-    margin-right: auto;
+    margin: 0 auto 0 0;
+  }
+  &__logout-btn {
+    @include btnNoBorder;
+    margin-left: auto;
+    padding-left: 2.5rem;
+  }
+  & hr {
+    border: 1px solid $white;
+    border-radius: 8px;
+    width: 90vw;
   }
 
   // &__container {
@@ -26,7 +34,7 @@
   .profile {
     &__header-title {
       margin: 1rem auto;
-      font-weight: 100;
+      font-weight: 400;
     }
   }
 }
