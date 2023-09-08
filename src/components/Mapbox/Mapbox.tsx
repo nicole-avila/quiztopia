@@ -3,13 +3,8 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl, { Map as MapGl, Marker } from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
 import { geolocation } from "../../api/geolocation";
-import { CoordsProps, setState } from "../../interfaces";
+import { CoordsProps, LocationProps } from "../../interfaces";
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_API_KEY;
-
-interface LocationProps {
-  setNewLat: setState<number>;
-  setNewLon: setState<number>;
-}
 
 export default function Mapbox({
   setNewLat,
@@ -20,7 +15,6 @@ export default function Mapbox({
   const [selectedPosition, setSelectedPosition] = useState<CoordsProps | null>(
     null
   );
-  const [position, setPosition] = useState<CoordsProps | null>(null);
   const [message, setMessage] = useState<string>("");
   const lat: number = 57.7006818;
   const lon: number = 11.9545412;
@@ -57,7 +51,7 @@ export default function Mapbox({
 
   useEffect(() => {
     if (mapRef.current !== null) {
-      geolocation(setMessage, setPosition, (center) => {
+      geolocation(setMessage, setSelectedPosition, (center) => {
         mapRef.current?.setCenter(center);
         addMarker(new mapboxgl.LngLat(center[1], center[0]));
       });
@@ -69,7 +63,7 @@ export default function Mapbox({
       <p className="mapbox__message">{message}</p>
       <div className="mapbox__map" ref={mapContainer} />
       {selectedPosition && (
-        <p>
+        <p className="mapbox__p">
           {" "}
           Selected position: {selectedPosition.latitude} latitude and{" "}
           {selectedPosition.longitude} longitude

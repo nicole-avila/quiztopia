@@ -63,6 +63,10 @@ export interface ApiSignUpResponse {
   success: boolean;
   message?: string;
 }
+export interface LocationProps {
+  setNewLat: setState<number>;
+  setNewLon: setState<number>;
+}
 
 // export type sSN<T> = React.Dispatch<React.SetStateAction<T>>;
 export type setState<T> = React.Dispatch<React.SetStateAction<T>>;

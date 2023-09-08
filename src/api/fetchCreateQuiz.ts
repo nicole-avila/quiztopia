@@ -15,6 +15,7 @@ export async function fetchCreateQuiz(
     };
     const response = await fetch(url, settings);
     const data: CreateQuizResponse = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error("A quiz could not be created", error);

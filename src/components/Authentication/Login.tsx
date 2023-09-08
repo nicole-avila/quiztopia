@@ -8,7 +8,6 @@ export default function Login() {
   const [message, setMessage] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [token, setToken] = useState<string>("");
   const navigate = useNavigate();
 
   async function handleLogin() {
@@ -26,8 +25,7 @@ export default function Login() {
         setPassword("");
       }
       if (data?.token) {
-        setToken(data.token);
-        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("token", data.token);
       }
     } catch (error) {
       console.error("Error during login", error);
