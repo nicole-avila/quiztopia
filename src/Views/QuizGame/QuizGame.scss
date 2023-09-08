@@ -5,6 +5,7 @@
   &__title {
     @include fontTitle;
     font-size: 6rem;
+    cursor: pointer;
   }
 }
 
