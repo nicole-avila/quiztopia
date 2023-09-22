@@ -65,7 +65,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0.9rem auto;
-    padding: 0.6rem;
+    padding: 0.8rem;
 
     &__img-contianer {
       width: 50px;
@@ -78,10 +78,14 @@
     &__message {
       color: $white;
     }
-    &__login-btn,
+    &__login-btn {
+      margin-top: 0.3rem;
+      background: $op-white;
+    }
     &__signup-btn {
       margin-top: 0.3rem;
       background: $op-white;
+      padding: 0;
     }
   }
 }
