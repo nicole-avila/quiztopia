@@ -25,4 +25,4 @@ Swagger: http://quiztopia-api-documentation.s3-website.eu-north-1.amazonaws.com/
 
 #### Appen är gjort i React + TypeScript
 
-![Alt text]('./quiztopia/public/assets/quiztopia.png')
+![Alt text]('/quiztopia/public/assets/quiztopia.png')
