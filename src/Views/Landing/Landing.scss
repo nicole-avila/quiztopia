@@ -76,5 +76,9 @@
     &__hero-title {
       font-size: 3rem;
     }
+    &__signup-btn,
+    &__login-btn {
+      width: 120px;
+    }
   }
 }

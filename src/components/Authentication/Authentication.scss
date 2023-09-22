@@ -59,7 +59,6 @@
 @media only screen and (min-width: 0px) and (max-width: 425px) {
   .auth {
     position: absolute;
-    background: $op-night;
     width: 280px;
     border-radius: 8px;
     top: 27%;
@@ -81,7 +80,6 @@
     }
     &__login-btn,
     &__signup-btn {
-      @include btn;
       margin-top: 0.3rem;
       background: $op-white;
     }
