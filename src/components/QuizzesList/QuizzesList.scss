@@ -4,6 +4,7 @@
 .quiz {
   &__mapbox {
     min-height: 290px;
+    margin-bottom: 3rem;
   }
   &__list-container {
     display: flex;
@@ -56,7 +57,9 @@
       padding: 0.2rem 0;
     }
     &__user {
-      font-size: 10px;
+      font-size: 8.3px;
+      max-width: 100px;
+      text-align: left;
     }
   }
 }
