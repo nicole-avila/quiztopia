@@ -45,14 +45,14 @@
 @media only screen and (min-width: 0px) and (max-width: 399px) {
   .quiz {
     &__list-container {
-      height: 210px;
+      width: 300px;
+      height: 270px;
       margin: 0.5rem auto;
       padding: 0.3rem 0;
     }
     &__user-list {
       width: 280px;
-      height: 30px;
-      margin: 0.3rem;
+      margin: 0.3rem auto;
       padding: 0.2rem 0;
     }
     &__user {
